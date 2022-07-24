@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_margin_default">16dp</dimen>
+    <dimen name="common_margin_middle">32dp</dimen>
+    <dimen name="common_size_min">15sp</dimen>
+    <dimen name="common_size_default">20sp</dimen>
+
+</resources>

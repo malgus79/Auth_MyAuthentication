@@ -9,4 +9,8 @@
     <string name="btn_facebook">Facebook</string>
     <string name="btn_google">Google</string>
     <string name="register_string">No tienes cuenta? Registrate!</string>
+    <string name="hint_name">Nombre y Apellido</string>
+    <string name="hint_repeat_password">Contraseña</string>
+    <string name="sign_up">Registrarme</string>
+    <string name="have_account_log_in">Ya tienes cuenta? Ingresa!</string>
 </resources>

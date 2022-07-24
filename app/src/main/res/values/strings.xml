@@ -13,4 +13,6 @@
     <string name="hint_repeat_password">Contraseña</string>
     <string name="sign_up">Registrarme</string>
     <string name="have_account_log_in">Ya tienes cuenta? Ingresa!</string>
+    <string name="back_login">Back Login</string>
+    <string name="sign_out">Sign out</string>
 </resources>

@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/gamcb/Archivos Android/MyAuthentication/app/src/main/res/drawable-v24/custom_corners.xml" value="0.1" />
+        <entry key="..\:/Users/gamcb/Archivos Android/MyAuthentication/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/gamcb/Archivos Android/MyAuthentication/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/Users/gamcb/Archivos Android/MyAuthentication/app/src/main/res/layout/fragment_sign_up.xml" value="0.16843971631205673" />
       </map>
     </option>
   </component>

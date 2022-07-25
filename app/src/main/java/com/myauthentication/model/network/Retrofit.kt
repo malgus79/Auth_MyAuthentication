@@ -6,7 +6,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
     const val BASE_URL = "http://ongapi.alkemy.org/"
-    const val SLIDE_URL = "api/slides"
 
     //Create logging interceptor
     private val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)

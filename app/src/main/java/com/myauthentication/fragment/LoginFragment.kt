@@ -14,7 +14,9 @@ import com.myauthentication.R
 import com.myauthentication.databinding.FragmentLoginBinding
 import com.myauthentication.model.data.LoginCredentials
 import com.myauthentication.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding

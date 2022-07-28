@@ -1,28 +1,22 @@
 package com.myauthentication.viewmodel
 
-import android.app.Activity
-import android.content.ContentValues
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import com.myauthentication.core.ApiStatus
 import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.core.validateFormatEmail
 import com.myauthentication.core.validateFormatPassword
 import com.myauthentication.model.data.LoginCredentials
-import com.myauthentication.model.network.APIServices
+import com.myauthentication.repository.HomeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(private val apiServices: APIServices): ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
 
     //Internal MutableLiveData
     private val _emailLiveData = MutableLiveData("")
@@ -63,7 +57,7 @@ class LoginViewModel(private val apiServices: APIServices): ViewModel() {
     fun logIn(loginCredentials: LoginCredentials) {
 
         //_postContactStatus.value = ApiStatus.LOADING
-        val request = apiServices.login(loginCredentials)
+        val request = repository.logIn(loginCredentials)
 
         viewModelScope.launch(Dispatchers.IO) {
             try {

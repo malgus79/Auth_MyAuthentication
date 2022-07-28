@@ -10,9 +10,9 @@ import javax.inject.Singleton
 class HomeRepository @Inject constructor(private val APIService: APIServices) {
 
     //Calls APIServices postContact function
-    suspend fun postContact(contactDTO: ContactDTO): ContactResponse {
-        return APIService.postContact(contactDTO)
-    }
+//    suspend fun postContact(contactDTO: ContactDTO): ContactResponse {
+//        return APIService.postContact(contactDTO)
+//    }
 
     fun logIn(loginCredentials: LoginCredentials): Call<LoginResponse>{
         return APIService.login(loginCredentials)

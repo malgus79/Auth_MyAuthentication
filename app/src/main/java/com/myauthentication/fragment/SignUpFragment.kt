@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.myauthentication.databinding.FragmentLoginBinding
 import com.myauthentication.databinding.FragmentSignUpBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpBinding

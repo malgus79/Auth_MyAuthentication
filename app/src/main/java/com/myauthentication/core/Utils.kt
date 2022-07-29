@@ -17,6 +17,3 @@ fun String.validateFormatEmail(): Boolean = emailPattern.matcher(this).matches()
 //Validate at least one digit, at least one lowercase, at least one uppercase,
 //at least one special character and length between 8-20
 fun String.validateFormatPassword(): Boolean = passPattern.matcher(this).matches()
-
-// Validate format not empty and a minimum of 10 characters
-fun String.validateFormatQueryMessage(): Boolean = this.isNotEmpty() && this.length >= 10

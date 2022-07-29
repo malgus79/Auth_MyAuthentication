@@ -1,7 +1,9 @@
 package com.myauthentication.core
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MyAuthenticationApp : Application(){
 
     override fun onCreate() {

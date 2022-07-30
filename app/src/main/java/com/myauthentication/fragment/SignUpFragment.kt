@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.myauthentication.R
 import com.myauthentication.databinding.FragmentLoginBinding
 import com.myauthentication.databinding.FragmentSignUpBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +23,14 @@ class SignUpFragment : Fragment() {
     ): View? {
         binding = FragmentSignUpBinding.inflate(layoutInflater, container, false)
 
+        goLogin()
+
         return binding.root
+    }
+
+    private fun goLogin() {
+        binding.tvHaveAccountLogIn.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

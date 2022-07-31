@@ -1,4 +1,4 @@
-package com.myauthentication.fragment
+package com.myauthentication.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -57,17 +57,23 @@ class SignUpFragment : Fragment() {
         }
     }
 
+    private fun goLogIn() {
+        findNavController().popBackStack()
+    }
+
+
+
     private fun showErrorDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.error_dialog))
             .setMessage(
                 getString(R.string.error_dialog_register)
             )
-            .setPositiveButton(getString(R.string.ok)) { _, _ -> showErrorInFields()  }
+            .setPositiveButton(getString(R.string.ok)) { _, _ -> showErrorInFields() }
             .show()
     }
 
-    private fun showErrorInFields(){
+    private fun showErrorInFields() {
         binding.outlinedTextFieldEmail.error = getString(R.string.error_dialog_register)
         binding.outlinedTextFieldName.error = getString(R.string.error_dialog_register)
         binding.outlinedTextFieldPassword.error = getString(R.string.error_dialog_register)
@@ -87,12 +93,25 @@ class SignUpFragment : Fragment() {
             .setMessage(
                 getString(R.string.message_successful)
             )
-            .setPositiveButton(getString(R.string.ok)) { _, _ -> goLogin() }
+            .setPositiveButton(getString(R.string.ok)) { _, _ -> goLogIn() }
             .show()
     }
 
-    private fun attemptRegister(binding: FragmentSignUpBinding, email: String, password: String, name: String) {
+    private fun attemptRegister(
+        binding: FragmentSignUpBinding,
+        email: String,
+        password: String,
+        name: String,
+    ) {
         viewModel.register(RegisterCredentials(name, email, password))
+
+    }
+
+    private fun clearFields(binding: FragmentSignUpBinding) {
+        binding.outlinedTextFieldName.editText?.text?.clear()
+        binding.outlinedTextFieldEmail.editText?.text?.clear()
+        binding.outlinedTextFieldPassword.editText?.text?.clear()
+        binding.outlinedTextFieldRepeatPassword.editText?.text?.clear()
     }
 
     private fun validateFields() {

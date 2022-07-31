@@ -1,4 +1,4 @@
-package com.myauthentication
+package com.myauthentication.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

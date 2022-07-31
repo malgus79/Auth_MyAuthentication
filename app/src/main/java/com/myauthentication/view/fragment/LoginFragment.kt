@@ -1,4 +1,4 @@
-package com.myauthentication.fragment
+package com.myauthentication.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

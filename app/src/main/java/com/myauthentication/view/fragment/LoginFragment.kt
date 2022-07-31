@@ -1,9 +1,12 @@
 package com.myauthentication.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,22 +14,40 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.myauthentication.R
+import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.databinding.FragmentLoginBinding
 import com.myauthentication.model.data.LoginCredentials
 import com.myauthentication.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
+    private val activityScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+
+
+        activityScope.launch {
+            delay(1000)
+            Toast.makeText(requireContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
+            val token = MyAuthenticationApp.prefs.getToken()
+            if (token.isNotEmpty()){
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            } else {
+
+            }
+        }
 
         goSignUp()
         buttonEnable()

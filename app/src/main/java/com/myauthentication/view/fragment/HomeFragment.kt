@@ -42,9 +42,13 @@ class HomeFragment : Fragment() {
         }
 
         binding.btnSignOut.setOnClickListener {
-
+            signOut()
         }
 
         return binding.root
+    }
+
+    private fun signOut() {
+        activity?.finish()
     }
 }

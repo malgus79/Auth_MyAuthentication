@@ -1,6 +1,9 @@
 package com.myauthentication.repository
 
-import com.myauthentication.model.data.*
+import com.myauthentication.model.data.LoginCredentials
+import com.myauthentication.model.data.LoginResponse
+import com.myauthentication.model.data.RegisterCredentials
+import com.myauthentication.model.data.RegisterResponse
 import com.myauthentication.model.network.APIServices
 import retrofit2.Call
 import javax.inject.Inject

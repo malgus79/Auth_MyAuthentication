@@ -37,7 +37,7 @@ data class LoginResponseData(
 data class LoginResponse(
     @SerializedName("success") val success: Boolean = false,
     @SerializedName("data") val data: LoginResponseData,
-    @SerializedName("message") val message: String?
+    @SerializedName("message") val message: String?,
 )
 
 data class RegisterResponseData(
@@ -48,5 +48,5 @@ data class RegisterResponseData(
 data class RegisterResponse(
     @SerializedName("success") val success: Boolean = true,
     //@SerializedName("data") val data: RegisterResponseData,
-    @SerializedName("message") val message: String?
+    @SerializedName("message") val message: String?,
 )

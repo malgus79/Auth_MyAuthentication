@@ -1,12 +1,10 @@
 package com.myauthentication.view.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -42,7 +40,7 @@ class LoginFragment : Fragment() {
             delay(1000)
             Toast.makeText(requireContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
             val token = MyAuthenticationApp.prefs.getToken()
-            if (token.isNotEmpty()){
+            if (token.isNotEmpty()) {
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             } else {
 

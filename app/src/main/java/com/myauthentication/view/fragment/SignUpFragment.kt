@@ -62,7 +62,6 @@ class SignUpFragment : Fragment() {
     }
 
 
-
     private fun showErrorDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.error_dialog))

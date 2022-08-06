@@ -13,7 +13,8 @@
     <string name="hint_name">Nombre y Apellido</string>
     <string name="hint_repeat_password">Contraseña</string>
     <string name="sign_up">Registrarme</string>
-    <string name="have_account_log_in">Ya tienes cuenta? Ingresa!</string>
+    <string name="do_you_already_have_an_account">Ya tienes cuenta?</string>
+    <string name="get_into">Ingresa!</string>
     <string name="sign_out_session">Cerrar sesión</string>
     <string name="quit">Salir</string>
     <string name="invalid_credentials">Credenciales Inválidas</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F1F1">
@@ -11,12 +10,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
         android:layout_marginStart="@dimen/common_margin_default"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="@dimen/common_margin_default"
         android:hint="@string/hint_email"
-        app:errorTextColor="@color/red"
         app:errorIconTint="@color/red"
+        app:errorTextColor="@color/red"
         app:hintTextColor="#B0B0B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +24,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -35,15 +34,15 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_margin_middle"
         android:layout_marginStart="@dimen/common_margin_default"
+        android:layout_marginTop="@dimen/common_margin_middle"
         android:layout_marginEnd="@dimen/common_margin_default"
-        app:errorTextColor="@color/red"
-        app:errorIconTint="@color/red"
-        app:hintTextColor="#B0B0B0"
         android:hint="@string/hint_password"
         app:errorEnabled="true"
         app:errorIconDrawable="@null"
+        app:errorIconTint="@color/red"
+        app:errorTextColor="@color/red"
+        app:hintTextColor="#B0B0B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/outlinedTextFieldEmail"
@@ -63,16 +62,16 @@
         android:layout_marginStart="@dimen/common_margin_default"
         android:layout_marginEnd="@dimen/common_margin_default"
         android:background="@drawable/custom_corners"
-        app:errorTextColor="@color/red"
-        app:errorIconTint="@color/red"
         android:text="@string/btn_register"
-        android:textSize="20sp"
         android:textAllCaps="false"
+        android:textSize="20sp"
+        app:errorIconTint="@color/red"
+        app:errorTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextFieldPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextFieldPassword"
+        app:layout_constraintVertical_bias="0.1" />
 
 
     <TextView
@@ -144,9 +143,9 @@
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

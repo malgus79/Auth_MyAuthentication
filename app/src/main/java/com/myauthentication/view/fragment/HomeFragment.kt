@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.myauthentication.R
+import com.myauthentication.core.MyAuthenticationApp.Companion.prefs
 import com.myauthentication.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -36,6 +37,7 @@ class HomeFragment : Fragment() {
 
         binding.btnHome.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+            prefs.deleteToken()
         }
 
         binding.btnSignOut.setOnClickListener {

@@ -38,12 +38,12 @@ class LoginFragment : Fragment() {
 
         activityScope.launch {
             delay(1000)
-            Toast.makeText(requireContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
             val token = MyAuthenticationApp.prefs.getToken()
             if (token.isNotEmpty()) {
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                Toast.makeText(requireContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
             } else {
-
+                Toast.makeText(requireContext(), "Por favor, registrese", Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -16,4 +16,8 @@ class Prefs(val context: Context) {
     fun getToken(): String {
         return myPrefs.getString(SHARED_TOKEN, "")!!
     }
+
+    fun deleteToken() {
+        myPrefs.edit().putString(SHARED_TOKEN, "").apply()
+    }
 }

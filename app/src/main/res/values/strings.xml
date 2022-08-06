@@ -13,8 +13,8 @@
     <string name="hint_repeat_password">Contraseña</string>
     <string name="sign_up">Registrarme</string>
     <string name="have_account_log_in">Ya tienes cuenta? Ingresa!</string>
-    <string name="back_login">Back Login</string>
-    <string name="sign_out">Sign out</string>
+    <string name="sign_out_session">Cerrar sesión</string>
+    <string name="quit">Salir</string>
     <string name="invalid_credentials">Credenciales Inválidas</string>
     <string name="error_dialog">Error</string>
     <string name="error_login_description">Error al iniciar sesión</string>

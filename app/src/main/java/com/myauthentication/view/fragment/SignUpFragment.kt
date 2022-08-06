@@ -59,6 +59,7 @@ class SignUpFragment : Fragment() {
 
     private fun goLogIn() {
         findNavController().popBackStack()
+        clearFields(binding)
     }
 
 

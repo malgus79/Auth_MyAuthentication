@@ -30,22 +30,21 @@ class HomeFragment : Fragment() {
 
 
         binding.progressBar1.isVisible = true
-        binding.btnHome.isVisible = false
-        binding.btnSignOut.isVisible = false
+        binding.btnSignOutSession.isVisible = false
+        binding.btnQuit.isVisible = false
 
         activityScope.launch {
             delay(2000)
             binding.progressBar1.isVisible = false
-            binding.btnHome.isVisible = true
-            binding.btnSignOut.isVisible = true
+            binding.btnSignOutSession.isVisible = true
+            binding.btnQuit.isVisible = true
         }
 
-        binding.btnHome.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+        binding.btnSignOutSession.setOnClickListener {
             prefs.deleteToken()
         }
 
-        binding.btnSignOut.setOnClickListener {
+        binding.btnQuit.setOnClickListener {
             signOut()
         }
 

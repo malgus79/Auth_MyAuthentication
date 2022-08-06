@@ -62,22 +62,13 @@ class LoginFragment : Fragment() {
         viewModel.loginStatus.observe(viewLifecycleOwner) {
             if (it) {
                 goHome()
+                Toast.makeText(requireContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
             } else {
                 showDialogLoginError()
             }
         }
 
         return binding.root
-    }
-
-    private fun showErrorDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.error_dialog))
-            .setMessage(
-                getString(R.string.error_dialog_login)
-            )
-            .setPositiveButton(getString(R.string.ok)) { _, _ -> }
-            .show()
     }
 
     // Navigation to Sign Up fragment

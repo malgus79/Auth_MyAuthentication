@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.myauthentication.R
+import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.core.MyAuthenticationApp.Companion.prefs
 import com.myauthentication.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,10 +37,20 @@ class HomeFragment : Fragment() {
         binding.btnQuit.isVisible = false
 
         activityScope.launch {
-            delay(2000)
-            binding.progressBar1.isVisible = false
-            binding.btnSignOutSession.isVisible = true
-            binding.btnQuit.isVisible = true
+            delay(1000)
+            val token = MyAuthenticationApp.prefs.getToken()
+            if (token.isEmpty()) {
+                findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+                binding.progressBar1.isVisible = false
+                binding.btnSignOutSession.isVisible = true
+                binding.btnQuit.isVisible = true
+
+            } else if (token.isNotEmpty()) {
+                Toast.makeText(requireContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
+                binding.progressBar1.isVisible = false
+                binding.btnSignOutSession.isVisible = true
+                binding.btnQuit.isVisible = true
+            }
         }
 
         binding.btnSignOutSession.setOnClickListener {

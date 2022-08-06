@@ -1,5 +1,6 @@
 package com.myauthentication.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.myauthentication.R
 import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.databinding.FragmentLoginBinding
 import com.myauthentication.model.data.LoginCredentials
+import com.myauthentication.view.MainActivity
 import com.myauthentication.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -29,12 +35,14 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
     private val activityScope = CoroutineScope(Dispatchers.Main)
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+        auth = Firebase.auth
 
         //1 second delay to check if there is a saved token
         activityScope.launch {
@@ -51,6 +59,7 @@ class LoginFragment : Fragment() {
         goSignUp()
         buttonEnable()
         validateFields()
+        loginGoogle()
 
         binding.btnLogin.setOnClickListener {
             attemptLogin(
@@ -71,6 +80,14 @@ class LoginFragment : Fragment() {
 
         return binding.root
     }
+
+//    override fun onStart() {
+//        super.onStart()
+//        val currentUser = auth.currentUser
+//        if (currentUser != null){
+//            goHome()
+//        }
+//    }
 
     //Navigation to Sign Up fragment
     private fun goSignUp() {
@@ -152,4 +169,13 @@ class LoginFragment : Fragment() {
         binding.outlinedTextFieldEmail.editText?.text?.clear()
         binding.outlinedTextFieldPassword.editText?.text?.clear()
     }
+
+    //Sign in with Google
+    private fun loginGoogle() {
+        binding.btnGoogleLogin.setOnClickListener {
+            viewModel.singInGoogle(requireActivity())
+        }
+    }
+
+
 }

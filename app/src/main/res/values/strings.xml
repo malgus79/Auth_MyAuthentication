@@ -30,5 +30,6 @@
     <string name="message_successful">El usuario se ha registrado con éxito</string>
     <string name="required_name">El nombre debe contener al menos 5 letras</string>
     <string name="pass_dont_match">Las contraseñas no coinciden</string>
+    <string name="services_client_id">981875200365-p9cud8do3ntbjl6rvf80jcsha50snqg8.apps.googleusercontent.com</string>
 
 </resources>

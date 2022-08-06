@@ -36,10 +36,11 @@ class LoginFragment : Fragment() {
     ): View? {
         binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
-
+        //1 second delay to check if there is a saved token
         activityScope.launch {
             delay(1000)
             val token = MyAuthenticationApp.prefs.getToken()
+            //Token != empty -> navigate to the homeFragment
             if (token.isNotEmpty()) {
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             } else {
@@ -59,6 +60,7 @@ class LoginFragment : Fragment() {
             )
         }
 
+        //Login status
         viewModel.loginStatus.observe(viewLifecycleOwner) {
             if (it) {
                 goHome()
@@ -70,7 +72,7 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    // Navigation to Sign Up fragment
+    //Navigation to Sign Up fragment
     private fun goSignUp() {
         binding.tvSignUp.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
@@ -82,15 +84,14 @@ class LoginFragment : Fragment() {
         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
     }
 
+    //Validation of text fields
     private fun validateFields() {
         val emailUI = binding.outlinedTextFieldEmail
         val passUI = binding.outlinedTextFieldPassword
 
         //Checks if email valid after changes on editText
         emailUI.editText?.doAfterTextChanged {
-
             viewModel.validateEmail(it.toString())
-
             if (!viewModel.validEmail) {
                 emailUI.error = getString(R.string.invalid_email)
             } else {
@@ -100,9 +101,7 @@ class LoginFragment : Fragment() {
 
         //Checks if password valid after changes on editText
         passUI.editText?.doAfterTextChanged {
-
             viewModel.validatePassword(it.toString())
-
             if (!viewModel.validPassword) {
                 passUI.error = getString(R.string.invalid_pass)
             } else {
@@ -118,6 +117,7 @@ class LoginFragment : Fragment() {
         }
     }
 
+    //login attempt
     private fun attemptLogin(binding: FragmentLoginBinding, email: String, password: String) {
         viewModel.logIn(LoginCredentials(email, password))
         if (viewModel.loginStatus.value == true) {
@@ -147,6 +147,7 @@ class LoginFragment : Fragment() {
             .show()
     }
 
+    //Method to delete the text of the fields
     private fun clearFields(binding: FragmentLoginBinding) {
         binding.outlinedTextFieldEmail.editText?.text?.clear()
         binding.outlinedTextFieldPassword.editText?.text?.clear()

@@ -40,7 +40,7 @@ class SignUpFragment : Fragment() {
             )
         }
 
-        //Status de registro
+        //Registration status
         viewModel.registerStatus.observe(viewLifecycleOwner) {
             if (it) {
                 showModal()
@@ -52,18 +52,20 @@ class SignUpFragment : Fragment() {
         return binding.root
     }
 
+    //Back to loginFragment
     private fun goLogin() {
         binding.tvHaveAccountLogIn.setOnClickListener {
             findNavController().popBackStack()
         }
     }
 
+    //Go back to the loginFragment and delete texts from the fields
     private fun goLogIn() {
         findNavController().popBackStack()
         clearFields(binding)
     }
 
-
+    //Error message when trying to register
     private fun showErrorDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.error_dialog))
@@ -74,11 +76,12 @@ class SignUpFragment : Fragment() {
             .show()
     }
 
+    //Show error in each of the record fields
     private fun showErrorInFields() {
-        binding.outlinedTextFieldEmail.error = getString(R.string.error_dialog_register)
-        binding.outlinedTextFieldName.error = getString(R.string.error_dialog_register)
-        binding.outlinedTextFieldPassword.error = getString(R.string.error_dialog_register)
-        binding.outlinedTextFieldRepeatPassword.error = getString(R.string.error_dialog_register)
+        binding.outlinedTextFieldEmail.error = getString(R.string.error_dialog_register_signup)
+        binding.outlinedTextFieldName.error = getString(R.string.error_dialog_register_signup)
+        binding.outlinedTextFieldPassword.error = getString(R.string.error_dialog_register_signup)
+        binding.outlinedTextFieldRepeatPassword.error = getString(R.string.error_dialog_register_signup)
     }
 
     //Enables signup button if signupButtonLiveData is true
@@ -88,6 +91,7 @@ class SignUpFragment : Fragment() {
         }
     }
 
+    //Show dialog when registering successfully
     private fun showModal() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.success_dialog))
@@ -98,6 +102,7 @@ class SignUpFragment : Fragment() {
             .show()
     }
 
+    //Method to try to register
     private fun attemptRegister(
         binding: FragmentSignUpBinding,
         email: String,
@@ -108,6 +113,7 @@ class SignUpFragment : Fragment() {
 
     }
 
+    //Clear all text fields
     private fun clearFields(binding: FragmentSignUpBinding) {
         binding.outlinedTextFieldName.editText?.text?.clear()
         binding.outlinedTextFieldEmail.editText?.text?.clear()
@@ -115,6 +121,7 @@ class SignUpFragment : Fragment() {
         binding.outlinedTextFieldRepeatPassword.editText?.text?.clear()
     }
 
+    //Validation of text fields
     private fun validateFields() {
         val nameUI = binding.outlinedTextFieldName
         val emailUI = binding.outlinedTextFieldEmail

@@ -17,10 +17,12 @@ class HomeRepository @Inject constructor(private val APIService: APIServices) {
 //        return APIService.postContact(contactDTO)
 //    }
 
+    //Method for Login
     fun logIn(loginCredentials: LoginCredentials): Call<LoginResponse>{
         return APIService.login(loginCredentials)
     }
 
+    //Method for Sign Up
     fun register(registerCredentials: RegisterCredentials): Call<RegisterResponse> {
         return APIService.register(registerCredentials)
     }

@@ -85,6 +85,7 @@ class LoginViewModel @Inject constructor(private val repository: HomeRepository)
         }
     }
 
+    //Email field validation
     fun validateEmail(email: String) {
         if (email.validateFormatEmail()) {
             _emailLiveData.value = email
@@ -95,6 +96,7 @@ class LoginViewModel @Inject constructor(private val repository: HomeRepository)
         setLoginButtonLiveData()
     }
 
+    //Password field validation
     fun validatePassword(pass: String) {
         if (pass.validateFormatPassword()) {
             _passwordLiveData.value = pass

@@ -25,7 +25,8 @@
     <string name="invalid_email">Email inválido</string>
     <string name="error_dialog_login">Ha ocurrido un error al iniciar sesión</string>
     <string name="error_dialog_register">Ha ocurrido un error al registrar el usuario</string>
-    <string name="success_dialog">Éxito</string>
+    <string name="error_dialog_register_signup">Verificar</string>
+    <string name="success_dialog">Confirmacion de registro</string>
     <string name="message_successful">El usuario se ha registrado con éxito</string>
     <string name="required_name">El nombre debe contener al menos 5 letras</string>
     <string name="pass_dont_match">Las contraseñas no coinciden</string>

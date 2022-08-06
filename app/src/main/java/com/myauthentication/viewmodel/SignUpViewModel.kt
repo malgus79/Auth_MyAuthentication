@@ -63,6 +63,7 @@ class SignUpViewModel @Inject constructor(private val repository: HomeRepository
         }
     }
 
+    //Name field validation
     fun validateName(name: String) {
         if (name.validateFormatName()) {
             _nameLiveData.value = name
@@ -72,6 +73,7 @@ class SignUpViewModel @Inject constructor(private val repository: HomeRepository
         }
     }
 
+    //Email field validation
     fun validateEmail(email: String) {
         if (email.validateFormatEmail()) {
             _emailLiveData.value = email
@@ -81,12 +83,14 @@ class SignUpViewModel @Inject constructor(private val repository: HomeRepository
         }
     }
 
+    //Password field validation
     fun validatePassword(pass: String) {
         _passwordLiveData.value = pass
         validPassword = pass.validateFormatPassword()
         passMatch = (_passwordLiveData.value == _repeatPasswordLiveData.value)
     }
 
+    //RepeatPassword field validation
     fun validateRepeatPass(pass: String) {
         _repeatPasswordLiveData.value = pass
         passMatch = (_passwordLiveData.value == _repeatPasswordLiveData.value)

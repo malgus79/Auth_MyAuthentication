@@ -11,9 +11,11 @@ import retrofit2.http.POST
 
 interface APIServices {
 
+    //Endpoint Login
     @POST("api/login")
     fun login(@Body loginCredentials: LoginCredentials): Call<LoginResponse>
 
+    //Endpoint Register
     @POST("api/register")
     fun register(@Body registerCredentials: RegisterCredentials): Call<RegisterResponse>
 

@@ -41,6 +41,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.btnSignOutSession.setOnClickListener {
+            signOut()
             prefs.deleteToken()
         }
 

@@ -40,6 +40,7 @@ class SignUpFragment : Fragment() {
             )
         }
 
+        //Status de registro
         viewModel.registerStatus.observe(viewLifecycleOwner) {
             if (it) {
                 showModal()

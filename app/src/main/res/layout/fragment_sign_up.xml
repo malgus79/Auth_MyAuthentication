@@ -112,6 +112,7 @@
         android:layout_marginTop="@dimen/common_margin_middle"
         android:layout_marginEnd="@dimen/common_margin_default"
         android:enabled="false"
+        android:background="@drawable/custom_corners"
         android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textSize="20sp"

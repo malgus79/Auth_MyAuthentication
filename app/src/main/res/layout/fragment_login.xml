@@ -120,22 +120,49 @@
             android:textColor="@color/white"
             android:textSize="@dimen/common_size_default"
             android:textStyle="bold" />
-
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/tv_sign_up"
+    <LinearLayout
+        android:id="@+id/linear_layout_register_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_margin_middle"
-        android:text="@string/register_string"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_layout_register"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout_register">
+
+        <TextView
+            android:id="@+id/tv_sign_up_question"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_middle"
+            android:text="@string/you_do_not_have_an_account"
+            android:textColor="@color/black"
+            android:gravity="end"
+            android:textSize="@dimen/common_size_min"
+            android:layout_marginEnd="@dimen/common_margin_min"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sign_up"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_middle"
+            android:text="@string/sign_up_login"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/common_size_min"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_sign_up_question"
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_register"
+            app:layout_constraintVertical_bias="0.09" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar1"

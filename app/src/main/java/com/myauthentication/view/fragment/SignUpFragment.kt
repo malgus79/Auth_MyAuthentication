@@ -81,7 +81,8 @@ class SignUpFragment : Fragment() {
         binding.outlinedTextFieldEmail.error = getString(R.string.error_dialog_register_signup)
         binding.outlinedTextFieldName.error = getString(R.string.error_dialog_register_signup)
         binding.outlinedTextFieldPassword.error = getString(R.string.error_dialog_register_signup)
-        binding.outlinedTextFieldRepeatPassword.error = getString(R.string.error_dialog_register_signup)
+        binding.outlinedTextFieldRepeatPassword.error =
+            getString(R.string.error_dialog_register_signup)
     }
 
     //Enables signup button if signupButtonLiveData is true

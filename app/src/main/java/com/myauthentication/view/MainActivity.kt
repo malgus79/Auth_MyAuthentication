@@ -8,9 +8,11 @@ import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.databinding.ActivityMainBinding
-import com.myauthentication.view.fragment.LoginFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -23,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        goTo()
 
         //Visible progress bar
         binding.progressBar1.isVisible = true
@@ -49,14 +50,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-//    private fun goTo(){
-//        if(authUser.currentUser != null){
-//            startActivity(Intent(this,HomeActivity::class.java))
-//            finish()
-//        }else{
-//            startActivity(Intent(this,LoginActivity::class.java))
-//            finish()
-//        }
-//    }
 }

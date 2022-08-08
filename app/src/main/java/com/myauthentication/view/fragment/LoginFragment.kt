@@ -15,14 +15,11 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.myauthentication.R
 import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.databinding.FragmentLoginBinding
 import com.myauthentication.model.data.LoginCredentials
 import com.myauthentication.view.HomeActivity
-import com.myauthentication.view.MainActivity
 import com.myauthentication.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +30,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    companion object{
+    companion object {
         private const val RC_SIGN_IN = 123
     }
 
@@ -50,14 +47,15 @@ class LoginFragment : Fragment() {
 
         //1 second delay to check if there is a saved token
         activityScope.launch {
-            delay(100)
+            delay(1000)
             val token = MyAuthenticationApp.prefs.getToken()
             //Token != empty -> navigate to the homeFragment
             if (token.isNotEmpty()) {
                 startActivity(Intent(requireContext(), HomeActivity::class.java))
                 Toast.makeText(requireContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Por favor, ingrese sus datos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Por favor, ingrese sus datos", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -85,14 +83,6 @@ class LoginFragment : Fragment() {
 
         return binding.root
     }
-
-//    override fun onStart() {
-//        super.onStart()
-//        val currentUser = auth.currentUser
-//        if (currentUser != null){
-//            goHome()
-//        }
-//    }
 
     //Navigation to Sign Up fragment
     private fun goSignUp() {
@@ -177,7 +167,7 @@ class LoginFragment : Fragment() {
         binding.outlinedTextFieldPassword.editText?.text?.clear()
     }
 
-    fun googleLogin(){
+    fun googleLogin() {
 
         val providers = arrayListOf(
             AuthUI.IdpConfig.GoogleBuilder().build())
@@ -203,19 +193,25 @@ class LoginFragment : Fragment() {
                 if (resultCode == Activity.RESULT_OK) {
                     // Successfully signed in
                     val user = FirebaseAuth.getInstance().currentUser
-                    Toast.makeText(requireContext(),"Bienvenid@ ${user!!.displayName}",Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(requireContext(),HomeActivity::class.java))
+                    Toast.makeText(requireContext(),
+                        "Bienvenid@ ${user!!.displayName}",
+                        Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(requireContext(), HomeActivity::class.java))
 
                 } else {
                     // Sign in failed. If response is null the user canceled the
                     // sign-in flow using the back button. Otherwise check
                     // response.getError().getErrorCode() and handle the error.
                     // ...
-                    Toast.makeText(requireContext(),"Ocurrio un error ${response!!.error!!.errorCode}",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),
+                        "Ocurrio un error ${response!!.error!!.errorCode}",
+                        Toast.LENGTH_SHORT).show()
                 }
             }
-        }catch (e:Exception) {
-            Toast.makeText(requireContext(),"Ocurrio un error al seleccionar una cuenta",Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(),
+                "Ocurrio un error al seleccionar una cuenta",
+                Toast.LENGTH_SHORT).show()
         }
     }
 }

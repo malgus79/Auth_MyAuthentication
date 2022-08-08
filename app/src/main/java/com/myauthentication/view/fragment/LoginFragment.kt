@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -50,9 +47,10 @@ class LoginFragment : Fragment() {
             val token = MyAuthenticationApp.prefs.getToken()
             //Token != empty -> navigate to the homeFragment
             if (token.isNotEmpty()) {
-                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                startActivity(Intent(requireContext(), MainActivity::class.java))
             } else {
-                Toast.makeText(requireContext(), "Por favor, ingrese sus datos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Por favor, ingrese sus datos", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -98,7 +96,7 @@ class LoginFragment : Fragment() {
 
     // Navigation to Home
     private fun goHome() {
-        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        startActivity(Intent(requireContext(), MainActivity::class.java))
     }
 
     //Validation of text fields
@@ -176,6 +174,4 @@ class LoginFragment : Fragment() {
             viewModel.singInGoogle(requireActivity())
         }
     }
-
-
 }

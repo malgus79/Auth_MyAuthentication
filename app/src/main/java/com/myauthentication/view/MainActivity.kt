@@ -2,48 +2,74 @@ package com.myauthentication.view
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.signin.GoogleSignIn
+import androidx.core.view.isVisible
+import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.databinding.ActivityMainBinding
-import com.myauthentication.view.fragment.HomeFragment
-import com.myauthentication.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navController: NavController
-    private val viewModel by viewModels<LoginViewModel>()
+    private val activityScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Navigation settings
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(androidx.navigation.fragment.R.id.nav_host_fragment_container) as NavHostFragment
-        navController = navHostFragment.findNavController()
-    }
+        //Visible progress bar
+        binding.progressBar1.isVisible = true
+        binding.btnSignOutSession.isVisible = false
+        binding.btnQuit.isVisible = false
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+        //1 second delay to check if there is a saved token
+        activityScope.launch {
+            delay(1000)
+            val token = MyAuthenticationApp.prefs.getToken()
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+            //Token = empty -> navigate to the loginFragment
+            if (token.isEmpty()) {
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                delay(2000)
+                binding.progressBar1.isVisible = false
+                binding.btnSignOutSession.isVisible = true
+                binding.btnQuit.isVisible = true
 
-        if (requestCode == 200) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            viewModel.endUpGoogleLogIn(task)
-
+                //Existing token -> go to home
+            } else if (token.isNotEmpty()) {
+                Toast.makeText(this@MainActivity, "Bienvenido", Toast.LENGTH_SHORT).show()
+                binding.progressBar1.isVisible = false
+                binding.btnSignOutSession.isVisible = true
+                binding.btnQuit.isVisible = true
+            }
         }
+
+        //Log out and exit the app. Clear the token
+        binding.btnSignOutSession.setOnClickListener {
+            signOut()
+            MyAuthenticationApp.prefs.deleteToken()
+        }
+
+        //Exit without logging out
+        binding.btnQuit.setOnClickListener {
+            finish()
+        }
+    }
+
+    //Method to exit the app
+    private fun signOut() {
+        finish()
+    }
+
+        override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }

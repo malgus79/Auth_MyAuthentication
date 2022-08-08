@@ -40,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
             binding.btnSignOutSession.isEnabled = false
             AuthUI.getInstance().signOut(this)
                 .addOnSuccessListener {
-                //startActivity(Intent(this,MainActivity::class.java))
+                startActivity(Intent(this,MainActivity::class.java))
                 Toast.makeText(this,"Hasta pronto", Toast.LENGTH_SHORT).show()
                 finish()
             }.addOnFailureListener {

@@ -20,40 +20,41 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        signOut()
+//        signOut()
 
-//        //Log out and exit the app. Clear the token
-//        binding.btnSignOutSession.setOnClickListener {
-//            signOut()
-//            MyAuthenticationApp.prefs.deleteToken()
-//        }
+        //Log out and exit the app. Clear the token
+        binding.btnSignOutSession.setOnClickListener {
+            signOut()
+            MyAuthenticationApp.prefs.deleteToken()
+        }
 
         //Exit without logging out
         binding.btnQuit.setOnClickListener {
-            binding.btnQuit.isEnabled = false
             finish()
         }
     }
 
     fun signOut(){
-        binding.btnSignOutSession.setOnClickListener {
-            binding.progressBar1.visibility = View.VISIBLE
+        //binding.btnSignOutSession.setOnClickListener {
+            //binding.progressBar1.visibility = View.VISIBLE
             binding.btnSignOutSession.isEnabled = false
-            AuthUI.getInstance().signOut(this).addOnSuccessListener {
-                startActivity(Intent(this,LoginActivity::class.java))
+            AuthUI.getInstance().signOut(this)
+                .addOnSuccessListener {
+                //startActivity(Intent(this,MainActivity::class.java))
                 Toast.makeText(this,"Hasta pronto", Toast.LENGTH_SHORT).show()
                 finish()
             }.addOnFailureListener {
                 binding.btnSignOutSession.isEnabled = true
                 binding.progressBar1.visibility = View.GONE
                 Toast.makeText(this,"Ocurrio un error ${it.message}", Toast.LENGTH_SHORT).show()
+                finish()
             }
-        }
+        //}
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finishAffinity()
-    }
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//        finish()
+//    }
 
 }

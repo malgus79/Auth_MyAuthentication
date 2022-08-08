@@ -23,38 +23,40 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        goTo()
+//        goTo()
 
-//        //Visible progress bar
-//        binding.progressBar1.isVisible = true
-//
-//        //1 second delay to check if there is a saved token
-//        activityScope.launch {
-//            delay(1000)
-//            val token = MyAuthenticationApp.prefs.getToken()
-//
-//            //Token = empty -> navigate to the loginFragment
-//            if (token.isEmpty()) {
-//                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-//                delay(2000)
-//                binding.progressBar1.isVisible = false
-//
-//                //Existing token -> go to home
-//            } else if (token.isNotEmpty()) {
-//                startActivity(Intent(this@MainActivity, HomeActivity::class.java))
-//                Toast.makeText(this@MainActivity, "Bienvenido", Toast.LENGTH_SHORT).show()
-//                binding.progressBar1.isVisible = false
-//            }
-//        }
-    }
+        //Visible progress bar
+        binding.progressBar1.isVisible = true
 
-    fun goTo(){
-        if(authUser.currentUser != null){
-            startActivity(Intent(this,HomeActivity::class.java))
-            finish()
-        }else{
-            startActivity(Intent(this,LoginActivity::class.java))
-            finish()
+        //1 second delay to check if there is a saved token
+        activityScope.launch {
+            delay(1000)
+            val token = MyAuthenticationApp.prefs.getToken()
+            val auth = authUser.currentUser
+
+            //Existing token -> go to home
+            if (token.isNotEmpty() || (auth != null)) {
+                startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                Toast.makeText(this@MainActivity, "Bienvenido", Toast.LENGTH_SHORT).show()
+                binding.progressBar1.isVisible = false
+                finish()
+
+            //Token = empty -> navigate to the login
+            } else {
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                delay(2000)
+                binding.progressBar1.isVisible = false
+            }
         }
     }
+
+//    private fun goTo(){
+//        if(authUser.currentUser != null){
+//            startActivity(Intent(this,HomeActivity::class.java))
+//            finish()
+//        }else{
+//            startActivity(Intent(this,LoginActivity::class.java))
+//            finish()
+//        }
+//    }
 }

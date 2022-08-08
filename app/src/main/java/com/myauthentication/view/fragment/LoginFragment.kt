@@ -199,7 +199,7 @@ class LoginFragment : Fragment() {
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
-                Toast.makeText(requireContext(),"Bienvenido ${user!!.displayName}",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Bienvenid@ ${user!!.displayName}",Toast.LENGTH_SHORT).show()
                 startActivity(Intent(requireContext(),HomeActivity::class.java))
 
             } else {

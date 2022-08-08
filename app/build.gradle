@@ -35,9 +35,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-    kapt {
-        correctErrorTypes true
-    }
 }
 
 dependencies {
@@ -73,7 +70,7 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.43.2'
 
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation platform('com.google.firebase:firebase-bom:30.3.1')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
 

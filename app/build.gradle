@@ -54,8 +54,7 @@ dependencies {
     //Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
     implementation "androidx.navigation:navigation-ui-ktx:2.5.1"
-    //Firebase Auth
-    implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
+
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -71,9 +70,18 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.43.2'
 
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:30.3.1')
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'com.google.android.gms:play-services-auth:20.2.0'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.1'
+
+    //Firebase Auth - Facebook
+    //implementation 'com.facebook.android:facebook-login:latest.release'
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+
+    // Firebase Auth
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    //Facebook login
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
 }

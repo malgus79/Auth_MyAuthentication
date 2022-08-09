@@ -51,3 +51,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+//ID App Facebook: 1729820294054897
+//Clave secreta de la app: 9feb1c10c4c26574f3487d905c69bcb1
+//RI de redireccionamiento de OAuth: https://myauthentication-8de41.firebaseapp.com/__/auth/handler
+// 2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+//Clave de descifrado del referente de instalación: b9b4dfbd04a20bbbb4d459744a779ad2fa81aaca4489b4542f577dde47ba23c1

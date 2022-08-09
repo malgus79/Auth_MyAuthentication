@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.login.LoginManager
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.databinding.ActivityHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
         binding.btnSignOutSession.setOnClickListener {
             signOut()
             MyAuthenticationApp.prefs.deleteToken()
+//            LoginManager.getInstance().logOut()
         }
 
         //Exit without logging out
@@ -38,6 +42,7 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 startActivity(Intent(this, MainActivity::class.java))
                 Toast.makeText(this, "Hasta pronto", Toast.LENGTH_SHORT).show()
+                Firebase.auth.signOut()
                 finish()
             }.addOnFailureListener {
                 binding.btnSignOutSession.isEnabled = true

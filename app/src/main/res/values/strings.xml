@@ -19,7 +19,7 @@
     <string name="quit">Salir</string>
     <string name="invalid_credentials">Credenciales Inválidas</string>
     <string name="error_dialog">Error</string>
-    <string name="error_login_description">Error al iniciar sesión</string>
+    <string name="error_login_description">Ha ocurrido un error al iniciar sesión</string>
     <string name="ok">Aceptar</string>
     <string name="invalid_pass">Contraseña inválida</string>
     <string name="invalid_email">Email inválido</string>
@@ -31,5 +31,9 @@
     <string name="required_name">El nombre debe contener al menos 5 letras</string>
     <string name="pass_dont_match">Las contraseñas no coinciden</string>
     <string name="services_client_id">981875200365-p9cud8do3ntbjl6rvf80jcsha50snqg8.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">1729820294054897</string>
+    <string name="fb_login_protocol_scheme">fb1729820294054897</string>
+    <string name="facebook_client_token">9feb1c10c4c26574f3487d905c69bcb1</string>
 
 </resources>

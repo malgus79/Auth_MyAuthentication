@@ -3,6 +3,7 @@ package com.myauthentication.view.fragment
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,19 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.myauthentication.R
 import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.databinding.FragmentLoginBinding
@@ -37,6 +47,9 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
     private val activityScope = CoroutineScope(Dispatchers.Main)
+    private val facebookCallbackManager = CallbackManager.Factory.create()
+    private lateinit var auth: FirebaseAuth
+    private val TAG = "Testing"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +57,7 @@ class LoginFragment : Fragment() {
     ): View? {
         binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
+        auth = Firebase.auth
 
         //1 second delay to check if there is a saved token
         activityScope.launch {
@@ -63,6 +77,7 @@ class LoginFragment : Fragment() {
         buttonEnable()
         validateFields()
         googleLogin()
+//        facebookLogIn()
 
         binding.btnLogin.setOnClickListener {
             attemptLogin(
@@ -167,6 +182,7 @@ class LoginFragment : Fragment() {
         binding.outlinedTextFieldPassword.editText?.text?.clear()
     }
 
+    //Login with google
     fun googleLogin() {
 
         val providers = arrayListOf(
@@ -185,6 +201,7 @@ class LoginFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
 
         try {
             if (requestCode == RC_SIGN_IN) {
@@ -212,6 +229,59 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(),
                 "Ocurrio un error al seleccionar una cuenta",
                 Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if (currentUser != null){
+            goHome()
+        }
+    }
+
+    private fun facebookLogIn() {
+        binding.btnFacebookLogin.setOnClickListener {
+            Log.d(TAG, "facebook:ButtonClick")
+            LoginManager.getInstance()
+                .logInWithReadPermissions(requireActivity(), listOf("email","public_profile"))
+
+            // Registers a login callback
+            LoginManager.getInstance().registerCallback(
+                facebookCallbackManager,
+                object : FacebookCallback<LoginResult> {
+                    override fun onCancel() {
+                        Log.d(TAG, "facebook:onCancel")
+                        showDialogLoginError()
+                    }
+                    override fun onError(error: FacebookException) {
+                        Log.d(TAG, "facebook:onError", error)
+                        showDialogLoginError()
+                    }
+                    override fun onSuccess(result: LoginResult) {
+                        Log.d(TAG, "facebook:onSuccess:$result")
+                        result?.let { val token = it.accessToken }
+                        handleFacebookAccessToken(result.accessToken)
+                    }
+                })
+        }
+    }
+
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d(TAG, "handleFacebookAccessToken:$token")
+
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+                    goHome()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    showDialogLoginError()
+                }
         }
     }
 }

@@ -79,7 +79,6 @@ class LoginFragment : Fragment() {
         validateFields()
         googleLogin()
 //        facebookLogIn()
-        setEditTextSettings()
 
         binding.btnLogin.setOnClickListener {
             attemptLogin(
@@ -182,31 +181,6 @@ class LoginFragment : Fragment() {
     private fun clearFields(binding: FragmentLoginBinding) {
         binding.outlinedTextFieldEmail.editText?.text?.clear()
         binding.outlinedTextFieldPassword.editText?.text?.clear()
-    }
-
-    private fun setEditTextSettings() {
-        with(binding.outlinedTextFieldEmail) {
-            editText!!.doOnTextChanged { text, _, _, _ ->
-                //Reset the credential error of the other field
-                binding.outlinedTextFieldPassword.apply {
-                    if (error == getString(R.string.dialog_credentials_error)) error = ""
-                }
-                // Only check field when the other field is written or completed
-                if (binding.outlinedTextFieldPassword.editText?.text.toString() != "" || text.toString() != "")
-                    error = viewModel.validateEmail("").toString()
-            }
-        }
-        with(binding.outlinedTextFieldPassword) {
-            editText!!.doOnTextChanged { text, _, _, _ ->
-                //Reset the credential error of the other field
-                binding.outlinedTextFieldEmail.apply {
-                    if (error == getString(R.string.dialog_credentials_error)) error = ""
-                }
-                // Only check field when the other field is written or completed
-                if (binding.outlinedTextFieldEmail.editText?.text.toString() != "" || text.toString() != "")
-                    error = viewModel.validatePassword("").toString()
-            }
-        }
     }
 
     //Login with google

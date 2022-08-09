@@ -35,5 +35,6 @@
     <string name="facebook_app_id">1729820294054897</string>
     <string name="fb_login_protocol_scheme">fb1729820294054897</string>
     <string name="facebook_client_token">9feb1c10c4c26574f3487d905c69bcb1</string>
+    <string name="dialog_credentials_error">Error en las credenciales</string>
 
 </resources>

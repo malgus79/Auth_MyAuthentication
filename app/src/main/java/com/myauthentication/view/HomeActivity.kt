@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.facebook.login.LoginManager
+//import com.facebook.login.LoginManager
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -42,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 startActivity(Intent(this, MainActivity::class.java))
                 Toast.makeText(this, "Hasta pronto", Toast.LENGTH_SHORT).show()
-                Firebase.auth.signOut()
+//                Firebase.auth.signOut()
                 finish()
             }.addOnFailureListener {
                 binding.btnSignOutSession.isEnabled = true

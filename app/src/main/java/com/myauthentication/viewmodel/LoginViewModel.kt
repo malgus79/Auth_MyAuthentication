@@ -9,6 +9,7 @@ import com.myauthentication.core.MyAuthenticationApp
 import com.myauthentication.core.validateFormatEmail
 import com.myauthentication.core.validateFormatPassword
 import com.myauthentication.model.data.LoginCredentials
+import com.myauthentication.model.network.APIServices
 import com.myauthentication.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
+class LoginViewModel @Inject constructor(private val repository: APIServices) : ViewModel() {
 
     //Internal MutableLiveData
     private val _emailLiveData = MutableLiveData("")
@@ -57,7 +58,7 @@ class LoginViewModel @Inject constructor(private val repository: HomeRepository)
     fun logIn(loginCredentials: LoginCredentials) {
 
         //_postContactStatus.value = ApiStatus.LOADING
-        val request = repository.logIn(loginCredentials)
+        val request = repository.login(loginCredentials)
 
         viewModelScope.launch(Dispatchers.IO) {
             try {

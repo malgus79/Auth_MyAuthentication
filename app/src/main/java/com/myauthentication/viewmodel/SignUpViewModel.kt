@@ -8,14 +8,14 @@ import com.myauthentication.core.validateFormatEmail
 import com.myauthentication.core.validateFormatName
 import com.myauthentication.core.validateFormatPassword
 import com.myauthentication.model.data.RegisterCredentials
-import com.myauthentication.repository.HomeRepository
+import com.myauthentication.model.network.APIServices
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
+class SignUpViewModel @Inject constructor(private val repository: APIServices) : ViewModel() {
 
     //Internal MutableLiveData
     private val _nameLiveData = MutableLiveData("")

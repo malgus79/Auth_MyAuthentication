@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HomeRepository @Inject constructor(private val APIService: APIServices) {
+class HomeRepository @Inject constructor(private val APIService: APIServices) : APIServices {
 
     //Calls APIServices postContact function
 //    suspend fun postContact(contactDTO: ContactDTO): ContactResponse {
@@ -18,12 +18,12 @@ class HomeRepository @Inject constructor(private val APIService: APIServices) {
 //    }
 
     //Method for Login
-    fun logIn(loginCredentials: LoginCredentials): Call<LoginResponse>{
+    override fun login(loginCredentials: LoginCredentials): Call<LoginResponse> {
         return APIService.login(loginCredentials)
     }
 
     //Method for Sign Up
-    fun register(registerCredentials: RegisterCredentials): Call<RegisterResponse> {
+    override fun register(registerCredentials: RegisterCredentials): Call<RegisterResponse> {
         return APIService.register(registerCredentials)
     }
 
